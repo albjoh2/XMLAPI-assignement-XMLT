@@ -6,8 +6,8 @@
       <xsl:for-each select="//NEWSPAPER">
         <tr>
           <td>
-            <p>
-              <xsl:value-of select="@NAME"/>
+            <p style="font-size:30px">
+              <xsl:value-of select="@NAME" />
             </p>
             <p>
               <xsl:value-of select="@SUBSCRIBERS"/>
@@ -18,7 +18,7 @@
           </td>
 
           <td>
-            <table border='1'>
+            <table class="inner" border='1'>
               <xsl:for-each select=".//ARTICLE">
                 <td style="vertical-align: baseline;">
                   <div style="margin: 0;">
@@ -35,40 +35,13 @@
                     <xsl:choose>
                       <xsl:when test="@DESCRIPTION = 'Review'">
                         <div style="background-color: #ffeeee;">
-                          <xsl:for-each select="./*">
-                            <xsl:choose>
-                              <xsl:when test="name() = 'HEADING'">
-                                <h3>
-                                  <xsl:value-of select="TEXT"/>
-                                </h3>
-                              </xsl:when>
-                              <xsl:when test="name() = 'STORY'">
-                                <p>
-                                  <xsl:value-of select="TEXT"/>
-                                </p>
-                              </xsl:when>
-                            </xsl:choose>
-                          </xsl:for-each>
+                          <xsl:apply-templates/>
                         </div>
                       </xsl:when>
 
-
                       <xsl:otherwise>
                         <div style="background-color: #eeffee;">
-                          <xsl:for-each select="./*">
-                            <xsl:choose>
-                              <xsl:when test="name() = 'HEADING'">
-                                <h3>
-                                  <xsl:value-of select="TEXT"/>
-                                </h3>
-                              </xsl:when>
-                              <xsl:when test="name() = 'STORY'">
-                                <p>
-                                  <xsl:value-of select="TEXT"/>
-                                </p>
-                              </xsl:when>
-                            </xsl:choose>
-                          </xsl:for-each>
+                          <xsl:apply-templates/>
                         </div>
                       </xsl:otherwise>
                     </xsl:choose>
@@ -82,5 +55,22 @@
       </xsl:for-each>
     </table>
   </xsl:template>
+
+  <xsl:template match="HEADING">
+    <xsl:for-each select="./TEXT">
+      <h3>
+        <xsl:value-of select="."/>
+      </h3>
+    </xsl:for-each>
+  </xsl:template>
+
+  <xsl:template match="STORY">
+    <xsl:for-each select="./TEXT">
+      <p>
+        <xsl:value-of select="."/>
+      </p>
+    </xsl:for-each>
+  </xsl:template>
+
 </xsl:stylesheet>
  

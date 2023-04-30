@@ -8,6 +8,23 @@
 </head>
 <body>
 
+<style>
+    *{
+        font-family: 'Courier New', Courier, monospace;
+    }
+    table{
+        border-collapse: collapse;
+    }
+    div{
+        padding: 10px;
+    }
+    .inner{
+        border: 0;
+    }
+    td{
+        background-color: #fdfdfd;
+    }
+</style>
 
 <?php
 $xslDoc = new DOMDocument();
